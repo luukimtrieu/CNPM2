@@ -53,8 +53,9 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TabLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".8"
         app:layout_constraintVertical_bias="0"
         app:tabGravity="fill"
         app:tabMode="fixed"
