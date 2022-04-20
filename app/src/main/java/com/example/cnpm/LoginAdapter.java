@@ -9,8 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.cnpm.ui.login.LoginFragment;
-import com.example.cnpm.ui.login.SignUpFragment;
+
 
 public class LoginAdapter extends FragmentStateAdapter {
     Context context;
@@ -30,7 +29,7 @@ public class LoginAdapter extends FragmentStateAdapter {
             case 0:
                 return new LoginFragment();
             case 1:
-                return new SignUpFragment();
+                return new SignupFragment();
             default:
                 return null;
         }

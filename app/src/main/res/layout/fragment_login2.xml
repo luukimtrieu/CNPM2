@@ -9,10 +9,10 @@
     android:paddingTop="@dimen/fragment_vertical_margin"
     android:paddingRight="@dimen/fragment_horizontal_margin"
     android:paddingBottom="@dimen/fragment_vertical_margin"
-    tools:context=".ui.login.LoginFragment">
+    tools:context="LoginFragment">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/EmailLogin"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:background="@drawable/radius_edtext"
@@ -30,7 +30,7 @@
         />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/PasswordSignup"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -46,23 +46,23 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailLogin" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btnSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:enabled="false"
-        android:text="sign in"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:background="@drawable/radius_button"
-        app:layout_constraintWidth_percent=".8"
+        android:enabled="true"
+        android:text="sign in"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/PasswordSignup"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintWidth_percent=".8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
