@@ -24,6 +24,7 @@ public class LoadingActivity extends AppCompatActivity {
             public void onFinish() {
                 Intent intent = new Intent(LoadingActivity.this, HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
         };
         countDownTimer.start();

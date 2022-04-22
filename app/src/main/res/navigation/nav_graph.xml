@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.cnpm.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_employeeFragment"
+            app:destination="@id/employeeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dayoffFragment"
+            app:destination="@id/dayoffFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_payrollFragment"
+            app:destination="@id/payrollFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.example.cnpm.EmployeeFragment"
+        android:label="fragment_employee"
+        tools:layout="@layout/fragment_employee" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.cnpm.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/dayoffFragment"
+        android:name="com.example.cnpm.DayoffFragment"
+        android:label="fragment_dayoff"
+        tools:layout="@layout/fragment_dayoff" />
+    <fragment
+        android:id="@+id/payrollFragment"
+        android:name="com.example.cnpm.PayrollFragment"
+        android:label="fragment_payroll"
+        tools:layout="@layout/fragment_payroll" /><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.cnpm.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" /><action android:id="@+id/action_global_myProfileFragment" app:destination="@id/myProfileFragment"/>
 </navigation>
