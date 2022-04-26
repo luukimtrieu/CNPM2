@@ -27,7 +27,11 @@
         android:id="@+id/employeeFragment"
         android:name="com.example.cnpm.EmployeeFragment"
         android:label="fragment_employee"
-        tools:layout="@layout/fragment_employee" />
+        tools:layout="@layout/fragment_employee" >
+        <action
+            android:id="@+id/action_employeeFragment_to_newEmployeeInfoFragment"
+            app:destination="@id/newEmployeeInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.cnpm.CalendarFragment"
@@ -48,4 +52,13 @@
         android:name="com.example.cnpm.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" /><action android:id="@+id/action_global_myProfileFragment" app:destination="@id/myProfileFragment"/>
+    <fragment
+        android:id="@+id/newEmployeeInfoFragment"
+        android:name="com.example.cnpm.NewEmployeeInfoFragment"
+        android:label="fragment_new_employee_info"
+        tools:layout="@layout/fragment_new_employee_info" >
+        <action
+            android:id="@+id/action_newEmployeeInfoFragment_to_employeeFragment"
+            app:destination="@id/employeeFragment" />
+    </fragment>
 </navigation>
