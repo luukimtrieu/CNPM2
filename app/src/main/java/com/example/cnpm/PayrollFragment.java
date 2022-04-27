@@ -1,12 +1,28 @@
 package com.example.cnpm;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.anychart.core.ui.Legend;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +76,69 @@ public class PayrollFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_payroll, container, false);
+    }
+
+    ArrayList<CustomListViewPayroll> listMember = new ArrayList<>();
+    Button btn_confirmAll;
+    ListView listView_show;
+    PieChart pieChart;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btn_confirmAll = view.findViewById(R.id.btnConfirmAll);
+        listView_show = view.findViewById(R.id.listMember);
+        pieChart = view.findViewById(R.id.pieChart);
+
+        setupPieChart();
+
+        CustomListViewPayroll customs1 = new CustomListViewPayroll("Chicky", "3000$");
+        CustomListViewPayroll customs2 = new CustomListViewPayroll("Cha Cha", "2500$");
+        CustomListViewPayroll customs3 = new CustomListViewPayroll("Boom Boom", "2700$");
+        CustomListViewPayroll customs4 = new CustomListViewPayroll("Lya Lya", "2800$");
+        listMember.add(customs1);
+        listMember.add(customs2);
+        listMember.add(customs3);
+        listMember.add(customs4);
+
+        CustomListViewPayrollAdapter adapter = new CustomListViewPayrollAdapter(getContext(), R.layout.payroll_adapter_view_layout, listMember);
+        listView_show.setAdapter(adapter);
+        listView_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+    }
+
+    public void setupPieChart() {
+
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        entries.add(new PieEntry(7000, "Cơ bản"));
+        entries.add(new PieEntry(2000, "Tăng ca"));
+        entries.add(new PieEntry(2000, "Thưởng"));
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color: ColorTemplate.MATERIAL_COLORS) {
+            colors.add(color);
+        }
+
+        for (int color: ColorTemplate.VORDIPLOM_COLORS) {
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Lương");
+        dataSet.setColors(colors);
+
+        PieData data = new PieData(dataSet);
+        data.setDrawValues(false);
+//        data.setValueFormatter(new PercentFormatter(pieChart));
+//        data.setValueTextSize(12f);
+//        data.setValueTextColor(Color.BLACK);
+
+        pieChart.setData(data);
+        pieChart.invalidate();
+
+        pieChart.animateY(1400, Easing.EaseInOutQuad);
     }
 }
