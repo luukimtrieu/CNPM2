@@ -1,28 +1,34 @@
 package com.example.cnpm;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.anychart.core.ui.Legend;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.model.GradientColor;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,9 +85,11 @@ public class PayrollFragment extends Fragment {
     }
 
     ArrayList<CustomListViewPayroll> listMember = new ArrayList<>();
+    ArrayList<String> listMonth = new ArrayList<>(Arrays.asList("Tháng 1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"));
     Button btn_confirmAll;
     ListView listView_show;
     PieChart pieChart;
+    Spinner spinner;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -89,7 +97,22 @@ public class PayrollFragment extends Fragment {
         btn_confirmAll = view.findViewById(R.id.btnConfirmAll);
         listView_show = view.findViewById(R.id.listMember);
         pieChart = view.findViewById(R.id.pieChart);
+        spinner = view.findViewById(R.id.monthSpinner);
 
+        ArrayAdapter myAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, listMonth);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(myAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(), "Month " + adapterView.getItemAtPosition(i).toString() + " is selected!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         setupPieChart();
 
         CustomListViewPayroll customs1 = new CustomListViewPayroll("Chicky", "3000$");
@@ -107,6 +130,13 @@ public class PayrollFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+        });
+
+        btn_confirmAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,15 +158,26 @@ public class PayrollFragment extends Fragment {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Lương");
+        dataSet.setSliceSpace(3f);
+        //ataSet.setSelectionShift(5f);
         dataSet.setColors(colors);
 
         PieData data = new PieData(dataSet);
-        data.setDrawValues(false);
-//        data.setValueFormatter(new PercentFormatter(pieChart));
-//        data.setValueTextSize(12f);
-//        data.setValueTextColor(Color.BLACK);
+        data.setDrawValues(true);
+        data.setValueTextSize(16f);
+        //data.setValueFormatter(new PercentFormatter(pieChart));
+        data.setValueTextColor(Color.WHITE);
 
         pieChart.setData(data);
+        pieChart.setDrawEntryLabels(false);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setHoleColor(Color.TRANSPARENT);
+        Legend l = pieChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+        l.setEnabled(true);
         pieChart.invalidate();
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);

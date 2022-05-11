@@ -8,19 +8,21 @@
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_weight="60"
         android:gravity="center|left"
         android:text="TextView Name"
         android:textSize="20sp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"/>
     <TextView
         android:id="@+id/textViewMoney"
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_weight="40"
         android:gravity="center|right"
         android:text="TextView Money"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:paddingEnd="10dp"/>
 </LinearLayout>
