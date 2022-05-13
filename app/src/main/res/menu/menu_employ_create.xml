@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/previous_employ"
+        android:icon="@android:drawable/ic_media_previous"
+        app:actionViewClass="androidx.appcompat.widget.AppCompatButton"
+        app:showAsAction="always"
+        android:title="Back">
+    </item>
+    <item
+        android:id="@+id/next_employ"
+        android:icon="@android:drawable/ic_media_next"
+        app:actionViewClass="androidx.appcompat.widget.AppCompatButton"
+        app:showAsAction="always"
+        android:title="Next">
+    </item>
+    <item
+        android:id="@+id/window"
+        android:icon="@android:drawable/ic_menu_view"
+        app:actionViewClass="androidx.appcompat.widget.AppCompatButton"
+        app:showAsAction="always"
+        android:title="Next">
+    </item>
+</menu>
