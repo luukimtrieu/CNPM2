@@ -4,189 +4,209 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".NewEmployInfoFragment">
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".NewEmployeeInfoFragment">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtNew"
-            android:layout_width="330dp"
-            android:layout_height="match_parent"
-            android:text="NEW"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textColor="@color/purple_200"
-            android:textStyle="bold" />
-
-
-        <Button
-            android:id="@+id/btnBack"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/teal_700"
-            android:text="back"
-            android:textSize="20dp"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAVE"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:background="@color/teal_700"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/btnDiscard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DISCARD"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/teal_700"
-            android:background="@color/white"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/btnContracts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CONTRACTS"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/teal_700"
-            android:background="@color/white"
-            android:layout_weight="1"/>
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/back"
+                    android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/fillName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text="Employee's Name"
-            android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageAvt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-        <EditText
-            android:id="@+id/fillPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:inputType="text"
-            android:text="Job Position"
-            android:textSize="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fillName" />
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_button"
+                    android:text="SAVE"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/btnDiscard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:text="DISCARD"
+                    android:textAlignment="center"
+                    android:textColor="@color/teal_700"
+                    android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPhonenumber"
-        android:text="Work Phone"
-        android:textSize="20dp"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillPhoneNumber"
-        android:inputType="text"
-        android:textSize="25dp"/>
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtEmail"
-        android:text="Work Email"
-        android:textSize="20dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillEmail"
-        android:inputType="text"
-        android:textSize="25dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_EmployeeName"
+                    android:layout_width="235dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtDepartment"
-        android:text="Department"
-        android:textSize="20dp"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Employee's Name"
+                        android:id="@+id/txtInputEditText_Name"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillDepartment"
-        android:inputType="text"
-        android:textSize="25dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtManager"
-        android:text="Manager"
-        android:textSize="20dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_JobPosition"
+                    android:layout_width="235dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_EmployeeName"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintVertical_bias="0.877">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillManagerName"
-        android:inputType="text"
-        android:textSize="25dp"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Job Position"
+                        android:id="@+id/txtInputEditText_JobPosition"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtWorkingHours"
-        android:text="Working Hours"
-        android:textSize="20dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillWorkinghours"
-        android:inputType="text"
-        android:textSize="25dp"/>
+                <ImageView
+                    android:id="@+id/imageAvt"
+                    android:layout_width="140dp"
+                    android:layout_height="120dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.98"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/hacker" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTimezone"
-        android:text="Timezone"
-        android:textSize="20dp"/>
+                <Button
+                    android:id="@+id/btnsetPicture"
+                    android:layout_width="51dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/camera"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageAvt"
+                    app:layout_constraintEnd_toEndOf="@+id/imageAvt"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/imageAvt"
+                    app:layout_constraintTop_toTopOf="@+id/imageAvt"
+                    app:layout_constraintVertical_bias="1.0" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fillTimezone"
-        android:inputType="text"
-        android:textSize="25dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout_PhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="10">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:id="@+id/txtInputEditText_PhoneNumber"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Work Email"
+                    android:id="@+id/txtInputEditText_WorkEmail"
+                    android:inputType="textEmailAddress"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout_Department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Department"
+                    android:inputType="text"
+                    android:id="@+id/txtInputEditText_Department"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout_Manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Manager"
+                    android:inputType="textPersonName"
+                    android:id="@+id/txtInputEditText_Manager"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputLayout_WorkHours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Working Hours"
+                    android:inputType="time"
+                    android:id="@+id/txtInputEditText_WorkingHours"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
