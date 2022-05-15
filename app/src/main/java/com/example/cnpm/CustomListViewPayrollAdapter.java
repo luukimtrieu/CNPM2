@@ -1,6 +1,7 @@
 package com.example.cnpm;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,17 +33,32 @@ public class CustomListViewPayrollAdapter extends ArrayAdapter<CustomListViewPay
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String name = getItem(position).getName();
-        String money = getItem(position).getMoney();
+        String id = getItem(position).getId();
+        String status = getItem(position).getStatus();
 
         //CustomListViewPayroll temp = new CustomListViewPayroll(name, money);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
         TextView tvName = convertView.findViewById(R.id.textViewName);
-        TextView tvMoney = convertView.findViewById(R.id.textViewMoney);
+        TextView tvID = convertView.findViewById(R.id.textViewID);
+        TextView tvStatus = convertView.findViewById(R.id.textViewStatus);
 
         tvName.setText(name);
-        tvMoney.setText(money);
+        tvID.setText(id);
+        switch (status){
+            case "Đã thanh toán":
+                tvStatus.setText(status);
+                tvStatus.setTextColor(Color.parseColor("#00c575"));
+                break;
+            case "Chưa thanh toán":
+                tvStatus.setText(status);
+                tvStatus.setTextColor(Color.parseColor("#d52f2f"));
+                break;
+            default:
+                tvStatus.setText(status);
+                break;
+        }
 
         return convertView;
     }

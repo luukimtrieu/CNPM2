@@ -5,77 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
-    tools:context=".PayrollFragment"
-    android:background="@drawable/gradient_color">
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="1.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"/>
+    android:layout_gravity="center_horizontal"
+    tools:context=".PayrollFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
+        android:weightSum="2"
+        android:background="@drawable/bchau_radius"
+        android:backgroundTint="#e0e0e0"
+        android:gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginTop="5dp">
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="230dp"
-            android:layout_height="40dp"
-            android:iconifiedByDefault="true"
-            android:textColor="@color/white"
-            android:queryHint="Search"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pieChart"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-        <Spinner
-            android:id="@+id/monthSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pieChart"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
-    </LinearLayout>
-    <ListView
-        android:id="@+id/listMember"
-        android:layout_width="match_parent"
-        android:layout_height="290dp"
-        android:layout_weight="5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:layout_gravity="right">
-
         <Button
-            android:id="@+id/btnConfirmAll"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/radius_button"
-            android:text="Add new"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="230dp"/>
+            android:id="@+id/btnPayPr"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Pay"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:background="@drawable/bchau_radius"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="5dp"
+            style="?android:attr/borderlessButtonStyle" />
+        <Button
+            android:id="@+id/btnReportPr"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Report"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:background="@drawable/bchau_radius"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginEnd="7dp"
+            android:layout_marginStart="5dp"
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/containerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"/>
 
 </LinearLayout>
 
