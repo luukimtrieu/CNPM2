@@ -64,6 +64,8 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        AppDataBase dataBase = new AppDataBase(this, "database.db", null, 1);
     }
 
 
