@@ -3,8 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_employee.xml" value="0.11302083333333333" />
-        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_new_employee_info.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_calendar.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_dayoff.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_employee.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_login2.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_my_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_new_employee_info.xml" value="0.264" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_payroll.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_signup.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/fragment_user_payroll.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/header_view.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/list_employee.xml" value="0.25416666666666665" />
+        <entry key="..\:/CNPM - copy 2/app/src/main/res/layout/payroll_adapter_view_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/CNPM - copy2/app/src/main/res/layout/fragment_employee.xml" value="0.25416666666666665" />
         <entry key="..\:/CNPM - copy2/app/src/main/res/layout/fragment_new_employee_info.xml" value="0.25416666666666665" />
         <entry key="..\:/CNPM/app/src/main/res/layout/activity_home.xml" value="0.12037037037037036" />

@@ -10,7 +10,12 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +64,7 @@ public class EmployeeFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,10 +72,13 @@ public class EmployeeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_employee, container, false);
     }
 
+    ArrayList<CustomListViewEmployee> listEmployee = new ArrayList<>();
+    ListView listView_show;
     Button btnAdd;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        listView_show = (ListView) view.findViewById(R.id.lvEmployees);
         btnAdd = (Button) view.findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +86,16 @@ public class EmployeeFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_employeeFragment_to_newEmployeeInfoFragment);
             }
         });
+
+        CustomListViewEmployee custom1 = new CustomListViewEmployee("Nguyen Van A", "provip@gmail.com");
+        CustomListViewEmployee custom2 = new CustomListViewEmployee("Nguyen Van B", "vipprosieucapp@gmail.com");
+        CustomListViewEmployee custom3 = new CustomListViewEmployee("Nguyen Van C", "promax@gmail.com");
+        listEmployee.add(custom1);
+        listEmployee.add(custom2);
+        listEmployee.add(custom3);
+
+        CustomListViewEmployeeAdapter adapter = new CustomListViewEmployeeAdapter(getContext(), R.layout.list_employee, listEmployee);
+        listView_show.setAdapter(adapter);
+
     }
 }

@@ -120,27 +120,27 @@ public class NewEmployeeInfoFragment extends Fragment {
     Button btnDiscard;
     Button btnpickFromGallery;
     TextInputEditText textInputEditText_Name;
-    TextInputEditText textInputEditText_Position;
+    TextInputEditText textInputEditText_ID;
     TextInputEditText textInputEditText_PhoneNumber;
     TextInputEditText textInputEditText_WorkEmail;
     TextInputEditText textInputEditText_Department;
     TextInputEditText textInputEditText_Manager;
-    TextInputEditText textInputEditText_WorkingHours;
+    TextInputEditText textInputEditText_Coach;
+    TextInputEditText textInputEditText_WorkInfo;
+    TextInputEditText textInputEditText_Payroll;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnBack = (Button) view.findViewById(R.id.btnBack);
-        btnDiscard = (Button) view.findViewById(R.id.btnDiscard);
         imageView = view.findViewById(R.id.imageAvt);
         btnpickFromGallery = view.findViewById(R.id.btnsetPicture);
         textInputEditText_Name = (TextInputEditText) view.findViewById(R.id.txtInputEditText_Name);
-        textInputEditText_Position = (TextInputEditText) view.findViewById(R.id.txtInputEditText_JobPosition);
+        textInputEditText_ID = (TextInputEditText) view.findViewById(R.id.txtInputEditText_EmployeeID);
         textInputEditText_PhoneNumber = (TextInputEditText) view.findViewById(R.id.txtInputEditText_PhoneNumber);
         textInputEditText_WorkEmail = (TextInputEditText) view.findViewById(R.id.txtInputEditText_WorkEmail);
         textInputEditText_Department = (TextInputEditText) view.findViewById(R.id.txtInputEditText_Department);
         textInputEditText_Manager = (TextInputEditText) view.findViewById(R.id.txtInputEditText_Manager);
-        textInputEditText_WorkingHours = (TextInputEditText) view.findViewById(R.id.txtInputEditText_WorkingHours);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,14 +156,7 @@ public class NewEmployeeInfoFragment extends Fragment {
             }
         });
 
-        btnDiscard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (TextInputEditText textInputEditText : Arrays.asList(textInputEditText_Name, textInputEditText_Position, textInputEditText_WorkEmail, textInputEditText_PhoneNumber, textInputEditText_Department, textInputEditText_Manager, textInputEditText_WorkingHours)) {
-                    textInputEditText.getText().clear();
-                }
-            }
-        });
+
 
         btnpickFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
