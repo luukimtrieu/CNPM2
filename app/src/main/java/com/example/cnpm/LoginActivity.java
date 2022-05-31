@@ -43,11 +43,8 @@ public class LoginActivity extends AppCompatActivity {
                     case 1:
                         tab.setText("Sign up");
                         break;
-
                 }
             }
         }).attach();
-
-
     }
 }
