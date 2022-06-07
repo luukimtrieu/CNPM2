@@ -11,7 +11,6 @@ public class LoadingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_loading);
 
         CountDownTimer countDownTimer = new CountDownTimer(3000,1) {
@@ -22,9 +21,18 @@ public class LoadingActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(LoadingActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+                if(getIntent().getExtras() != null)
+                {
+                    if(getIntent().getExtras().getBoolean("new_account")){
+                        Intent intent = new Intent(LoadingActivity.this, FirstAccessActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }else{
+                    Intent intent = new Intent(LoadingActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         };
         countDownTimer.start();

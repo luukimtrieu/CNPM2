@@ -12,7 +12,7 @@
     tools:context="LoginFragment">
 
     <EditText
-        android:id="@+id/EmailLogin"
+        android:id="@+id/edittextEmailLogin"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:background="@drawable/radius_edtext"
@@ -30,7 +30,7 @@
         />
 
     <EditText
-        android:id="@+id/PasswordSignup"
+        android:id="@+id/edittextPasswordLogin"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -46,10 +46,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/edittextEmailLogin" />
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -61,8 +61,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/edittextPasswordLogin"
         app:layout_constraintVertical_bias="0.2"
         app:layout_constraintWidth_percent=".8" />
+
+    <TextView
+        android:id="@+id/textViewWrongEmailOrPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Wrong email or password"
+        android:textColor="#cc3300"
+        android:visibility="invisible"
+        app:layout_constraintVertical_bias=".2"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="@+id/edittextPasswordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/edittextPasswordLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

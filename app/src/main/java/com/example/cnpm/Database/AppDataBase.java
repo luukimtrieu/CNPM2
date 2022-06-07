@@ -2,12 +2,15 @@ package com.example.cnpm.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppDataBase extends SQLiteOpenHelper {
 
@@ -17,6 +20,8 @@ public class AppDataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("CREATE TABLE USER(email varchar(30) PRIMARY KEY," +
+                "company_name varchar(50), user_name varchar(20), password varchar(20))");
 
         sqLiteDatabase.execSQL("CREATE TABLE TASK(task_id INTEGER PRIMARY KEY AUTOINCREMENT, employee_id integer, " +
                                                     "task_name varchar(20), date_start varchar(15), date_end varchar(15)," +
@@ -101,6 +106,43 @@ public class AppDataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("COMMIT;");
         sqLiteDatabase.execSQL("PRAGMA foreign_keys=on");
 
+    }
+
+    public List<User> getAllUser()
+    {
+        List<User> users = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM USER", null);
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                String email = cursor.getString(0);
+                String password = cursor.getString(1);
+                String user_name = cursor.getString(2);
+                String company_name = cursor.getString(3);
+                int employee_id = cursor.getInt(4);
+
+                User user = new User(company_name, user_name, email, password, employee_id);
+                users.add(user);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return users;
+    }
+
+    public void addOne(User user)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("email", user.getEmail());
+        cv.put("password", user.getPassword());
+        cv.put("user_name", user.getUser_name());
+        cv.put("company_name", user.getCompany_name());
+
+        db.insert("USER", null, cv);
     }
 
     public void addOne(Work_Info work_info)

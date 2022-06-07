@@ -11,43 +11,27 @@
     android:paddingBottom="@dimen/fragment_vertical_margin"
     tools:context="SignupFragment">
 
+
     <EditText
-        android:id="@+id/companyName"
+        android:id="@+id/edittextNameSignUp"
         android:layout_width="0dp"
         android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/radius_edtext"
-        android:hint="Company Name"
+        android:hint="First and Last Name"
         android:inputType="text"
         android:paddingLeft="20dp"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".2"
         app:layout_constraintWidth_percent=".8" />
 
-
     <EditText
-        android:id="@+id/EmailLogin"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/radius_edtext"
-        android:paddingLeft="20dp"
-        android:hint="First and Last Name"
-        app:layout_constraintWidth_percent=".8"
-        android:inputType="text"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/companyName" />
-
-    <EditText
-        android:id="@+id/EmailSignup"
+        android:id="@+id/edittextEmailSignup"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -61,11 +45,11 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EmailLogin" />
+        app:layout_constraintTop_toBottomOf="@id/edittextNameSignUp" />
 
 
     <EditText
-        android:id="@+id/PasswordSignup"
+        android:id="@+id/edittextPasswordSignup"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -81,10 +65,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/edittextEmailSignup" />
 
     <EditText
-        android:id="@+id/passwordConfirm"
+        android:id="@+id/edittextPasswordConfirm"
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -100,7 +84,7 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordSignup" />
+        app:layout_constraintTop_toBottomOf="@+id/edittextPasswordSignup" />
 
 
     <Button
@@ -116,7 +100,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/edittextPasswordConfirm"
         app:layout_constraintWidth_percent=".8" />
+
+    <TextView
+        android:id="@+id/textViewWrongEmailOrPasswordSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Email already registered"
+        android:textColor="#cc3300"
+        android:visibility="invisible"
+        app:layout_constraintVertical_bias=".2"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="@+id/edittextPasswordConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/edittextPasswordConfirm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

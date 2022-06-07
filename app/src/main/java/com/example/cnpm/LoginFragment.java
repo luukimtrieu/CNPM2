@@ -11,6 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.cnpm.Database.AppDataBase;
+import com.example.cnpm.Database.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +38,11 @@ public class LoginFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private EditText edittextEmail;
+    private EditText edittextPassword;
+    private Button btnLogin;
+    private TextView textViewWrongEmailOrPassword;
+    private AppDataBase db;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -69,14 +85,60 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button buttonLogin = view.findViewById(R.id.btnSignUp);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        db = new AppDataBase(getContext(), "database6.db", null,1);
+
+        edittextEmail = view.findViewById(R.id.edittextEmailLogin);
+        edittextPassword = view.findViewById(R.id.edittextPasswordLogin);
+        textViewWrongEmailOrPassword = view.findViewById(R.id.textViewWrongEmailOrPassword);
+        
+        btnLogin = view.findViewById(R.id.btnSignIn);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), LoadingActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
+                boolean flag = true;
+                if(!checkEmailFormat())
+                {
+                    edittextEmail.setError("Wrong email format");
+                    flag = false;
+                }
+                if(!checkEmptyPassword()) {
+                    edittextPassword.setError("Empty password");
+                    flag = false;
+                }
+                if(flag) {
+                    String email = edittextEmail.getText().toString();
+                    String password = edittextPassword.getText().toString();
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful())
+                            {
+                                Intent intent = new Intent(getContext(), LoadingActivity.class);
+                                startActivity(intent);
+                                requireActivity().finish();
+                            }
+                            else
+                                textViewWrongEmailOrPassword.setVisibility(View.VISIBLE);
+
+                        }
+                    });
+                }
             }
         });
     }
+
+    public boolean checkEmailFormat()
+    {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return edittextEmail.getText().toString().matches(regex);
+    }
+
+    public boolean checkEmptyPassword()
+    {
+        return !edittextPassword.getText().toString().equals("");
+    }
+    
+
+
 }
