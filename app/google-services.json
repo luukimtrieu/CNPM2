@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253867761796",
+    "project_id": "cnpm-a0cd4",
+    "storage_bucket": "cnpm-a0cd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253867761796:android:727a20f061a4352c2062d1",
+        "android_client_info": {
+          "package_name": "com.example.cnpm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253867761796-hpq5uvcaocj0chulosj75g7k1besn4q3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-0jTUWkxPsa0H6V1-qU1twXJg0fOJbvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253867761796-hpq5uvcaocj0chulosj75g7k1besn4q3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
