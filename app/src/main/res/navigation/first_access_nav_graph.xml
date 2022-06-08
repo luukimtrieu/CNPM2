@@ -9,5 +9,15 @@
         android:id="@+id/firstAccessFragment"
         android:name="com.example.cnpm.FirstAccessFragment"
         android:label="fragment_first_access"
-        tools:layout="@layout/fragment_first_access" />
+        tools:layout="@layout/fragment_first_access" >
+        <action
+            android:id="@+id/action_firstAccessFragment_to_fillinfoFirstAccessFragment"
+            app:destination="@id/fillinfoFirstAccessFragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/fillinfoFirstAccessFragment"
+        android:name="com.example.cnpm.FillinfoFirstAccessFragment"
+        android:label="FillinfoFirstAccessFragment" />
 </navigation>

@@ -34,10 +34,11 @@
         app:layout_constraintVertical_bias=".2"
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintHeight_percent=".5"
+        android:src="@drawable/human_resources"
         tools:src="@drawable/human_resources" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonGetStarted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Get Started"
@@ -57,7 +58,7 @@
         android:fontFamily="sans-serif-light"
         android:text="Welcome, ABCDEF"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGetStarted"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
@@ -72,7 +73,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGetStarted"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
