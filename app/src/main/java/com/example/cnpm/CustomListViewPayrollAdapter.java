@@ -1,11 +1,15 @@
 package com.example.cnpm;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +39,7 @@ public class CustomListViewPayrollAdapter extends ArrayAdapter<CustomListViewPay
         String name = getItem(position).getName();
         String id = getItem(position).getId();
         String status = getItem(position).getStatus();
+        String url = getItem(position).getUrlImage();
 
         //CustomListViewPayroll temp = new CustomListViewPayroll(name, money);
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -43,15 +48,30 @@ public class CustomListViewPayrollAdapter extends ArrayAdapter<CustomListViewPay
         TextView tvName = convertView.findViewById(R.id.textViewName);
         TextView tvID = convertView.findViewById(R.id.textViewID);
         TextView tvStatus = convertView.findViewById(R.id.textViewStatus);
+        ImageView imgAvt = convertView.findViewById(R.id.avtPr);
 
         tvName.setText(name);
         tvID.setText(id);
-        switch (status){
+        if (url.length() > 0) {
+            Bitmap bitmap = BitmapFactory.decodeFile(url);
+            imgAvt.setImageBitmap(bitmap);
+        } else {
+            imgAvt.setImageResource(R.drawable.hacker);
+        }
+        switch (status) {
             case "Đã thanh toán":
                 tvStatus.setText(status);
                 tvStatus.setTextColor(Color.parseColor("#00c575"));
                 break;
             case "Chưa thanh toán":
+                tvStatus.setText(status);
+                tvStatus.setTextColor(Color.parseColor("#d52f2f"));
+                break;
+            case "Paid":
+                tvStatus.setText(status);
+                tvStatus.setTextColor(Color.parseColor("#00c575"));
+                break;
+            case "Unpaid":
                 tvStatus.setText(status);
                 tvStatus.setTextColor(Color.parseColor("#d52f2f"));
                 break;
@@ -62,4 +82,6 @@ public class CustomListViewPayrollAdapter extends ArrayAdapter<CustomListViewPay
 
         return convertView;
     }
+
+
 }

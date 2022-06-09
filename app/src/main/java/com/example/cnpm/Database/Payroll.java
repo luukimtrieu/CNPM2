@@ -11,6 +11,19 @@ public class Payroll {
     private String bonus_salary;
     private String total;
 
+    public Payroll(int id, String date, int _is_paid, String _basic_salary,
+                   int ot_hour, String ot_pay, int _day_off, String _bonus_salary, String _total) {
+        this.employee_id = id;
+        this.month_year = date;
+        this.is_paid = _is_paid;
+        this.basic_salary = _basic_salary;
+        this.OT_hour = ot_hour;
+        this.OT_pay = ot_pay;
+        this.day_off = _day_off;
+        this.bonus_salary = _bonus_salary;
+        this.total = _total;
+    }
+
     public int getEmployee_id() {
         return employee_id;
     }

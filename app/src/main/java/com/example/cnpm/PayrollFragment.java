@@ -1,18 +1,12 @@
 package com.example.cnpm;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,19 +14,10 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.model.GradientColor;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,65 +75,85 @@ public class PayrollFragment extends Fragment {
 
     Button btnPay, btnReport;
     Boolean isUserPayrollFragment;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btnPay = getView().findViewById(R.id.btnPayPr);
-        btnReport = getView().findViewById(R.id.btnReportPr);
-        isUserPayrollFragment = true;
+        tabLayout = view.findViewById(R.id.tabLayoutPayroll);
+        viewPager2 = view.findViewById(R.id.viewPagerPayroll);
 
-        FragmentManager fragManager = getChildFragmentManager();
-        FragmentTransaction fragTrans = fragManager.beginTransaction();
+        tabLayout.addTab(tabLayout.newTab().setText("Pay"));
+        tabLayout.addTab(tabLayout.newTab().setText("Report"));
 
-        fragTrans.add(R.id.containerFragment, new PayFragment(), null);
-        fragTrans.commit();
+        PayrollViewPagerAdapter adapter = new PayrollViewPagerAdapter(getChildFragmentManager(), getLifecycle(), getContext(), tabLayout.getTabCount());
+        viewPager2.setAdapter(adapter);
 
-        btnPay.setOnClickListener(new View.OnClickListener() {
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void onClick(View view) {
-                if(isUserPayrollFragment == false) {
-                    isUserPayrollFragment = true;
-
-                    Drawable btnDrawable = btnPay.getBackground();
-                    btnDrawable = DrawableCompat.wrap(btnDrawable);
-                    DrawableCompat.setTint(btnDrawable, Color.WHITE);
-                    btnPay.setBackground(btnDrawable);
-
-                    Drawable btnDrawable2 = btnReport.getBackground();
-                    btnDrawable2 = DrawableCompat.wrap(btnDrawable2);
-                    DrawableCompat.setTint(btnDrawable2, Color.TRANSPARENT);
-                    btnReport.setBackground(btnDrawable2);
-
-                    FragmentManager fragManager2 = getChildFragmentManager();
-                    FragmentTransaction fragTrans2 = fragManager2.beginTransaction();
-                    fragTrans2.replace(R.id.containerFragment, new PayFragment(), null);
-                    fragTrans2.commit();
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position) {
+                    case 0:
+                        tab.setText("Pay");
+                        break;
+                    case 1:
+                        tab.setText("Report");
+                        break;
                 }
             }
-        });
-        btnReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isUserPayrollFragment == true) {
-                    isUserPayrollFragment = false;
+        }).attach();
 
-                    Drawable btnDrawable = btnPay.getBackground();
-                    btnDrawable = DrawableCompat.wrap(btnDrawable);
-                    DrawableCompat.setTint(btnDrawable, Color.TRANSPARENT);
-                    btnPay.setBackground(btnDrawable);
-
-                    Drawable btnDrawable2 = btnReport.getBackground();
-                    btnDrawable2 = DrawableCompat.wrap(btnDrawable2);
-                    DrawableCompat.setTint(btnDrawable2, Color.WHITE);
-                    btnReport.setBackground(btnDrawable2);
-
-                    FragmentManager fragManager2 = getChildFragmentManager();
-                    FragmentTransaction fragTrans2 = fragManager2.beginTransaction();
-                    fragTrans2.replace(R.id.containerFragment, new PayrollReportFragment(), null);
-                    fragTrans2.commit();
-                }
-            }
-        });
+//        btnPay = view.findViewById(R.id.btnPayPr);
+//        btnReport = view.findViewById(R.id.btnReportPr);
+//        isUserPayrollFragment = true;
+//
+//        FragmentManager fragManager = getChildFragmentManager();
+//        FragmentTransaction fragTrans = fragManager.beginTransaction();
+//
+//        fragTrans.add(R.id.containerFragment, new PayFragment(), null);
+//        fragTrans.commit();
+//
+//        btnPay.setOnClickListener(view12 -> {
+//            if(!isUserPayrollFragment) {
+//                isUserPayrollFragment = true;
+//
+//                Drawable btnDrawable = btnPay.getBackground();
+//                btnDrawable = DrawableCompat.wrap(btnDrawable);
+//                DrawableCompat.setTint(btnDrawable, Color.WHITE);
+//                btnPay.setBackground(btnDrawable);
+//
+//                Drawable btnDrawable2 = btnReport.getBackground();
+//                btnDrawable2 = DrawableCompat.wrap(btnDrawable2);
+//                DrawableCompat.setTint(btnDrawable2, Color.TRANSPARENT);
+//                btnReport.setBackground(btnDrawable2);
+//
+//                FragmentManager fragManager2 = getChildFragmentManager();
+//                FragmentTransaction fragTrans2 = fragManager2.beginTransaction();
+//                fragTrans2.replace(R.id.containerFragment, new PayFragment(), null);
+//                fragTrans2.commit();
+//            }
+//        });
+//        btnReport.setOnClickListener(view1 -> {
+//            if(isUserPayrollFragment) {
+//                isUserPayrollFragment = false;
+//
+//                Drawable btnDrawable = btnPay.getBackground();
+//                btnDrawable = DrawableCompat.wrap(btnDrawable);
+//                DrawableCompat.setTint(btnDrawable, Color.TRANSPARENT);
+//                btnPay.setBackground(btnDrawable);
+//
+//                Drawable btnDrawable2 = btnReport.getBackground();
+//                btnDrawable2 = DrawableCompat.wrap(btnDrawable2);
+//                DrawableCompat.setTint(btnDrawable2, Color.WHITE);
+//                btnReport.setBackground(btnDrawable2);
+//
+//                FragmentManager fragManager2 = getChildFragmentManager();
+//                FragmentTransaction fragTrans2 = fragManager2.beginTransaction();
+//                fragTrans2.replace(R.id.containerFragment, new PayrollReportFragment(), null);
+//                fragTrans2.commit();
+//            }
+//        });
     }
 }

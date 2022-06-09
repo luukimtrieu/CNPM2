@@ -4,11 +4,13 @@ public class CustomListViewPayroll {
     private String name;
     private String status;
     private String id;
+    private String urlImage;
 
-    public CustomListViewPayroll(String name, String id, String status) {
+    public CustomListViewPayroll(String name, String id, String status, String url) {
         this.name = name;
         this.id = id;
         this.status = status;
+        this.urlImage = url;
     }
 
     public String getName() {
@@ -32,5 +34,13 @@ public class CustomListViewPayroll {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

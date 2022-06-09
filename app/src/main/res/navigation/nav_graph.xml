@@ -46,7 +46,11 @@
         android:id="@+id/payrollFragment"
         android:name="com.example.cnpm.PayrollFragment"
         android:label="fragment_payroll"
-        tools:layout="@layout/fragment_payroll" /><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
+        tools:layout="@layout/fragment_payroll" >
+        <action
+            android:id="@+id/action_payrollFragment_to_userPayrollFragment"
+            app:destination="@id/userPayrollFragment" />
+    </fragment><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/>
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.cnpm.MyProfileFragment"
@@ -60,5 +64,14 @@
         <action
             android:id="@+id/action_newEmployeeInfoFragment_to_employeeFragment"
             app:destination="@id/employeeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userPayrollFragment"
+        android:name="com.example.cnpm.UserPayrollFragment"
+        android:label="fragment_user_payroll"
+        tools:layout="@layout/fragment_user_payroll" >
+        <action
+            android:id="@+id/action_userPayrollFragment_to_payrollFragment"
+            app:destination="@id/payrollFragment" />
     </fragment>
 </navigation>

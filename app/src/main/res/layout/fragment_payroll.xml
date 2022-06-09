@@ -8,49 +8,17 @@
     android:layout_gravity="center_horizontal"
     tools:context=".PayrollFragment">
 
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutPayroll"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:background="@drawable/bchau_radius"
-        android:backgroundTint="#e0e0e0"
-        android:gravity="center"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginTop="5dp">
-        <Button
-            android:id="@+id/btnPayPr"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="Pay"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:background="@drawable/bchau_radius"
-            android:layout_marginStart="7dp"
-            android:layout_marginEnd="5dp"
-            style="?android:attr/borderlessButtonStyle" />
-        <Button
-            android:id="@+id/btnReportPr"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="Report"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:background="@drawable/bchau_radius"
-            android:backgroundTint="@android:color/transparent"
-            android:layout_marginEnd="7dp"
-            android:layout_marginStart="5dp"
-            style="?android:attr/borderlessButtonStyle"/>
-    </LinearLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/containerFragment"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerPayroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
 

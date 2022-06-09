@@ -27,17 +27,17 @@ public class AppDataBase extends SQLiteOpenHelper {
                                                     "task_name varchar(20), date_start varchar(15), date_end varchar(15)," +
                                                     "organizer varchar(50), description varchar(50), location varchar(100)," +
                                                     "url varchat(100))");
-        sqLiteDatabase.execSQL("CREATE TABLE PAYROLL (payroll_id INTEGER PRIMARY KEY AUTOINCREMENT, employee_id integer," +
-                                                    "month_year varchar(10), is_paid int ,basic_salary varchar(10), OT_hour int," +
-                                                    "OT_pay varchar(10), day_off int, bonus_salary varchar(10)," +
-                                                    "total varchar(100))");
+        sqLiteDatabase.execSQL("CREATE TABLE PAYROLL(payroll_id INTEGER PRIMARY KEY AUTOINCREMENT, employee_id integer," +
+                                                    "month_year varchar(10), is_paid int, basic_salary varchar(10), OT_hour int," +
+                                                    " OT_pay varchar(10), day_off int, bonus_salary varchar(10)," +
+                                                    " total varchar(100))");
 
         sqLiteDatabase.execSQL("CREATE TABLE WORK_INFO (work_id INTEGER PRIMARY KEY AUTOINCREMENT, work_address varchar(50)," +
                                                     "work_hour integer)");
 
         sqLiteDatabase.execSQL("CREATE TABLE PRIVATE_INFO (info_id INTEGER PRIMARY KEY AUTOINCREMENT, address varchar(100)," +
                                                     "email varchar(20), language varchar(50), bank_account varchar(20)," +
-                                                    "maritual_status varchar(8), study_field varchar(100), school varchat(100)," +
+                                                    "maritual_status varchar(8), study_field varchar(100), school varchar(100)," +
                                                     "nationality varchar(50), gender varchar(10), birth varchar(15)," +
                                                     "certificate_level varchar(20))");
 
@@ -68,6 +68,16 @@ public class AppDataBase extends SQLiteOpenHelper {
                 "CONSTRAINT fk_private_info FOREIGN KEY(private_info_id) REFERENCES PRIVATE_INFO(info_id)," +
                 "CONSTRAINT fk_hr_id FOREIGN KEY(hr_id) REFERENCES HR(hr_id))");
 
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Chicky', 'HR Manager', '20000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Chaos', 'C# Developer', '18000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Jimmy', 'Business Analysis', '15000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Crush', 'Seller', '21000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Hugo', 'Java Developer', '19500000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Timmy', 'Boss', '22000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Buu', 'Fresher', '12000000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Kite', 'Python Developer', '20500000', '')");
+//        sqLiteDatabase.execSQL("INSERT INTO employee_new (employee_name, department, payroll_id, photo_url) VALUES ('Boo', 'C++ Developer', '26000000', '')");
+
         sqLiteDatabase.execSQL("INSERT INTO employee_new SELECT * FROM _employees_old");
         sqLiteDatabase.execSQL("DROP TABLE _employees_old");
 
@@ -97,7 +107,7 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("ALTER TABLE PAYROLL RENAME TO _pay_roll_old");
         sqLiteDatabase.execSQL("CREATE TABLE pay_roll_new (payroll_id INTEGER PRIMARY KEY AUTOINCREMENT, employee_id integer," +
-                "month int, is_paid int ,basic_salary varchar(10), OT_hour int," +
+                "month varchar(7), is_paid int, basic_salary varchar(10), OT_hour int," +
                 "OT_pay varchar(10), day_off int, bonus_salary varchar(10)," +
                 "total varchar(100), " +
                 "CONSTRAINT fk_employee_id_payroll FOREIGN KEY(employee_id) REFERENCES employee_new(employee_id))");
@@ -164,7 +174,6 @@ public class AppDataBase extends SQLiteOpenHelper {
         cv.put("date_start", time_off.getDate_start());
         cv.put("date_end", time_off.getDate_end());
 
-
         db.insert("department_new", null, cv);
     }
 
@@ -213,7 +222,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         cv.put("bonus_salary", payroll.getBonus_salary());
         cv.put("total", payroll.getTotal());
 
-        db.insert("department_new", null, cv);
+        db.insert("pay_roll_new", null, cv);
     }
 
     public void addOne(Department department)
@@ -237,8 +246,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         db.insert("HR", null, cv);
     }
 
-    public void addOne(Employee employee)
-    {
+    public void addOne(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("name", employee.getName());
@@ -259,5 +267,30 @@ public class AppDataBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+    }
+
+    public Cursor getPayollInfo(String sql) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        return sqLiteDatabase.rawQuery(sql, null);
+    }
+    public void updatePayroll(String sql) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.execSQL(sql);
+    }
+    public void addOnePayroll(Payroll payroll) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        int _id = payroll.getEmployee_id();
+        String _month = payroll.getMonth_year();
+        int _isPaid = payroll.getIs_paid();
+        String _basicSalary = payroll.getBasic_salary();
+        int _otHour = payroll.getOT_hour();
+        String _otPay = payroll.getOT_pay();
+        int _dayOff = payroll.getDay_off();
+        String _bonusSalary = payroll.getBonus_salary();
+        String _total = payroll.getTotal();
+        String sql = "INSERT INTO pay_roll_new (employee_id, month, is_paid, basic_salary, OT_hour, OT_pay, day_off, bonus_salary, total) " +
+                "VALUES ('" + _id + "', '" + _month + "', '" + _isPaid + "', '" + _basicSalary + "', '" + _otHour + "', '" + _otPay + "', '"
+                + _dayOff + "', '" + _bonusSalary + "', '" + _total + "')";
+        sqLiteDatabase.execSQL(sql);
     }
 }
