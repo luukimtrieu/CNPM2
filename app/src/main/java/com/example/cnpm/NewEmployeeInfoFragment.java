@@ -2,7 +2,6 @@ package com.example.cnpm;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -119,6 +118,7 @@ public class NewEmployeeInfoFragment extends Fragment {
     Button btnSave;
     Button btnBack;
     Button btnpickFromGallery;
+    Button btnDelete;
     Image Avt;
     TextInputEditText textInputEditText_Name;
     TextInputEditText textInputEditText_PhoneNumber;
@@ -140,11 +140,9 @@ public class NewEmployeeInfoFragment extends Fragment {
     TextInputEditText textInputEditText_PrStudyField;
     TextInputEditText textInputEditText_PrBankAcc;
     boolean check = false;
-    public int payroll_id;
     public int work_info_id;
     public int private_info_id;
     public int hr_id;
-    public int employee_id;
     AppDataBase dataBase;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -152,8 +150,9 @@ public class NewEmployeeInfoFragment extends Fragment {
         dataBase = new AppDataBase(getContext(), "database5.db", null, 1);
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnBack = (Button) view.findViewById(R.id.btnBack);
-        imageView = view.findViewById(R.id.imageAvt);
+        btnDelete = (Button) view.findViewById(R.id.btnDelete);
         btnpickFromGallery = view.findViewById(R.id.btnsetPicture);
+        imageView = view.findViewById(R.id.imageAvt);
         textInputEditText_Name = (TextInputEditText) view.findViewById(R.id.txtInputEditText_Name);
         textInputEditText_PhoneNumber = (TextInputEditText) view.findViewById(R.id.txtInputEditText_PhoneNumber);
         textInputEditText_WorkEmail = (TextInputEditText) view.findViewById(R.id.txtInputEditText_WorkEmail);
@@ -181,111 +180,79 @@ public class NewEmployeeInfoFragment extends Fragment {
             }
         });
 
+        btnpickFromGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickerLauncher.launch("image/*");
+            }
+        });
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (textInputEditText_Name.getText().toString().equals("") || textInputEditText_Name.getText().toString().equals("Ex: Allan Walker")){
-                    Toast.makeText(getContext(),"Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_Name.setText("Ex: Allan Walker");
-                    textInputEditText_Name.setTextColor(Color.RED);
-                    //textInputEditText_Name.setFocusedByDefault(true);
-                }else if (textInputEditText_JobPosition.getText().toString().equals("") || textInputEditText_JobPosition.getText().toString().equals("Ex: Marketing Consultant")) {
+                if (textInputEditText_Name.getText().toString().equals("")){
+                    textInputEditText_Name.setError("Please fill out information!");
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_JobPosition.setText("Ex: Marketing Consultant");
-                    textInputEditText_JobPosition.setTextColor(Color.RED);
-                    textInputEditText_Name.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PhoneNumber.getText().toString().equals("") || textInputEditText_PhoneNumber.getText().toString().equals("Ex: 0355175321") || textInputEditText_PhoneNumber.getText().length() < 10) {
+                }else if (textInputEditText_JobPosition.getText().toString().equals("")) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PhoneNumber.setText("Ex: 0355175321");
-                    textInputEditText_PhoneNumber.setTextColor(Color.RED);
-                    textInputEditText_JobPosition.setTextColor(Color.BLACK);
-                } else if (textInputEditText_WorkEmail.getText().toString().equals("") || textInputEditText_WorkEmail.getText().toString().equals("Ex: abc@gmail.com")) {
+                    textInputEditText_JobPosition.setError("Please fill out information!");
+                } else if (textInputEditText_PhoneNumber.getText().toString().equals("") || textInputEditText_PhoneNumber.getText().length() < 10) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_WorkEmail.setText("Ex: abc@gmail.com");
-                    textInputEditText_WorkEmail.setTextColor(Color.RED);
-                    textInputEditText_PhoneNumber.setTextColor(Color.BLACK);
-                } else if (textInputEditText_Department.getText().toString().equals("") || textInputEditText_Department.getText().toString().equals("Ex: Marketing")) {
+                    textInputEditText_PhoneNumber.setError("Please fill out information!");
+                } else if (textInputEditText_WorkEmail.getText().toString().equals("")) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_Department.setText("Ex: Marketing");
-                    textInputEditText_Department.setTextColor(Color.RED);
-                    textInputEditText_WorkEmail.setTextColor(Color.BLACK);
-                } else if (textInputEditText_Manager.getText().toString().equals("") || textInputEditText_Manager.getText().toString().equals("Ex: Barack Obama")) {
+                    textInputEditText_WorkEmail.setError("Please fill out information!");
+                } else if (textInputEditText_Department.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_Manager.setText("Ex: Barack Obama");
-                    textInputEditText_Manager.setTextColor(Color.RED);
-                    textInputEditText_Department.setTextColor(Color.BLACK);
-                } else if (textInputEditText_Coach.getText().toString().equals("") || textInputEditText_Coach.getText().toString().equals("Ex: Donald Trump")) {
+                    textInputEditText_Department.setError("Please fill out information!");
+                } else if (textInputEditText_Manager.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_Coach.setText("Ex: Donald Trump");
-                    textInputEditText_Coach.setTextColor(Color.RED);
-                    textInputEditText_Manager.setTextColor(Color.BLACK);
-                } else if (textInputEditText_BasicSalary.getText().toString().equals("") || textInputEditText_BasicSalary.getText().toString().equals("Ex: 5000000")) {
+                    textInputEditText_Manager.setError("Please fill out information!");
+                } else if (textInputEditText_Coach.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_BasicSalary.setText("Ex: 5000000");
-                    textInputEditText_BasicSalary.setTextColor(Color.RED);
-                    textInputEditText_Coach.setTextColor(Color.BLACK);
-                } else if (textInputEditText_EmployeeType.getText().toString().equals("") || textInputEditText_EmployeeType.getText().toString().equals("Ex: Trainee/Employee/Freelancer...")) {
+                    textInputEditText_Coach.setError("Please fill out information!");
+                } else if (textInputEditText_BasicSalary.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_EmployeeType.setText("Ex: Trainee/Employee/Freelancer...");
-                    textInputEditText_EmployeeType.setTextColor(Color.RED);
-                    textInputEditText_BasicSalary.setTextColor(Color.BLACK);
-                } else if (textInputEditText_WorkAddress.getText().toString().equals("") || textInputEditText_WorkAddress.getText().toString().equals("Ex: Company/Work from home...")) {
+                    textInputEditText_BasicSalary.setError("Please fill out information!");
+                } else if (textInputEditText_EmployeeType.getText().toString().equals("")) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_WorkAddress.setText("Ex: Company/Work from home...");
-                    textInputEditText_WorkAddress.setTextColor(Color.RED);
-                    textInputEditText_EmployeeType.setTextColor(Color.BLACK);
-                } else if (textInputEditText_WorkHours.getText().toString().equals("") || textInputEditText_WorkHours.getText().toString().equals("Ex: 38")) {
+                    textInputEditText_EmployeeType.setError("Please fill out information!");
+                } else if (textInputEditText_WorkAddress.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_WorkHours.setText("Ex: 38");
-                    textInputEditText_WorkHours.setTextColor(Color.RED);
-                    textInputEditText_WorkAddress.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrAddress.getText().toString().equals("") || textInputEditText_PrAddress.getText().toString().equals("Ex: 27, Dance Street, High District...")) {
+                    textInputEditText_WorkAddress.setError("Please fill out information!");
+                } else if (textInputEditText_WorkHours.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrAddress.setText("Ex: 27, Dance Street, High District...");
-                    textInputEditText_PrAddress.setTextColor(Color.RED);
-                    textInputEditText_WorkHours.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrEmail.getText().toString().equals("") || textInputEditText_PrEmail.getText().toString().equals("Ex: abc@gmail.com")) {
+                    textInputEditText_WorkHours.setError("Please fill out information!");
+                } else if (textInputEditText_PrAddress.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrEmail.setText("Ex: abc@gmail.com");
-                    textInputEditText_PrEmail.setTextColor(Color.RED);
-                    textInputEditText_PrAddress.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrLanguage.getText().toString().equals("") || textInputEditText_PrLanguage.getText().toString().equals("Ex: Vietnamese, English, Korean")) {
+                    textInputEditText_PrAddress.setError("Please fill out information!");
+                } else if (textInputEditText_PrEmail.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrLanguage.setText("Ex: Vietnamese, English, Korean");
-                    textInputEditText_PrLanguage.setTextColor(Color.RED);
-                    textInputEditText_PrEmail.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrBankAcc.getText().toString().equals("") || textInputEditText_PrBankAcc.getText().toString().equals("Ex: 10000747836")) {
+                    textInputEditText_PrEmail.setError("Please fill out information!");
+                } else if (textInputEditText_PrLanguage.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrBankAcc.setText("Ex: 10000747836");
-                    textInputEditText_PrBankAcc.setTextColor(Color.RED);
-                    textInputEditText_PrLanguage.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrStudyField.getText().toString().equals("") || textInputEditText_PrStudyField.getText().toString().equals("Ex: Economics")) {
+                    textInputEditText_PrLanguage.setError("Please fill out information!");
+                } else if (textInputEditText_PrBankAcc.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrStudyField.setText("Ex: Economics");
-                    textInputEditText_PrStudyField.setTextColor(Color.RED);
-                    textInputEditText_PrBankAcc.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrGender.getText().toString().equals("") || textInputEditText_PrGender.getText().toString().equals("Ex: Male/Female")) {
+                    textInputEditText_PrBankAcc.setError("Please fill out information!");
+                } else if (textInputEditText_PrStudyField.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrGender.setText("Ex: Male/Female");
-                    textInputEditText_PrGender.setTextColor(Color.RED);
-                    textInputEditText_PrStudyField.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrBirth.getText().toString().equals("") || textInputEditText_PrBirth.getText().toString().equals("Ex: 08/12/1995")) {
+                    textInputEditText_PrStudyField.setError("Please fill out information!");
+                } else if (textInputEditText_PrGender.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrBirth.setText("Ex: 08/12/1995");
-                    textInputEditText_PrBirth.setTextColor(Color.RED);
-                    textInputEditText_PrGender.setTextColor(Color.BLACK);
-                } else if (textInputEditText_PrCertificate.getText().toString().equals("") || textInputEditText_PrCertificate.getText().toString().equals("Ex: graduate/bachelor/other")) {
+                    textInputEditText_PrGender.setError("Please fill out information!");
+                } else if (textInputEditText_PrBirth.getText().toString().equals("") ) {
                     Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
-                    textInputEditText_PrCertificate.setText("Ex: graduate/bachelor/other");
-                    textInputEditText_PrCertificate.setTextColor(Color.RED);
-                    textInputEditText_PrBirth.setTextColor(Color.BLACK);
+                    textInputEditText_PrBirth.setError("Please fill out information!");
+                } else if (textInputEditText_PrCertificate.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "Please fill out information!", Toast.LENGTH_LONG).show();
+                    textInputEditText_PrCertificate.setError("Please fill out information!");
                 } else {
-                    textInputEditText_PrCertificate.setTextColor(Color.BLACK);
                     check = true;
                 }
                 if (check) {
                     Employee employee = new Employee(textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
-                            textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),"image/*",Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
+                            textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),null,Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
                     HR hr = new HR(textInputEditText_JobPosition.getText().toString(), textInputEditText_EmployeeType.getText().toString());
                     Work_Info work_info = new Work_Info(textInputEditText_WorkAddress.getText().toString(), Integer.parseInt(textInputEditText_WorkHours.getText().toString()));
                     Private_Info private_info = new Private_Info(textInputEditText_PrAddress.getText().toString(), textInputEditText_PrEmail.getText().toString(), textInputEditText_PrLanguage.getText().toString(),
@@ -301,12 +268,15 @@ public class NewEmployeeInfoFragment extends Fragment {
                 }
             }
         });
-        btnpickFromGallery.setOnClickListener(new View.OnClickListener() {
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pickerLauncher.launch("image/*");
+                Employee employee = new Employee(textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
+                        textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),null,Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
+                dataBase.deleteOne(employee);
+                Toast.makeText(getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }

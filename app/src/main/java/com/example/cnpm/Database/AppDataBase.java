@@ -105,8 +105,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE pay_roll_new (payroll_id INTEGER PRIMARY KEY AUTOINCREMENT, employee_id integer," +
                 "month varchar(7), is_paid int, basic_salary varchar(10), OT_hour int," +
                 "OT_pay varchar(10), day_off int, bonus_salary varchar(10)," +
-                "total varchar(100), " +
-                "CONSTRAINT fk_employee_id_payroll FOREIGN KEY(employee_id) REFERENCES employee_new(employee_id))");
+                "total varchar(100))");
         sqLiteDatabase.execSQL("DROP TABLE _pay_roll_old");
 
         sqLiteDatabase.execSQL("COMMIT;");
@@ -222,6 +221,13 @@ public class AppDataBase extends SQLiteOpenHelper {
         cv.put("hr_id", employee.getHr_id());
 
         db.insert("employee_new", null, cv);
+    }
+
+    public void deleteOne(Employee employee){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String name = employee.getName();
+        String queryString = " DELETE FROM employee_new WHERE employee_name = " + name;
+        db.execSQL(queryString);
     }
 
     @Override

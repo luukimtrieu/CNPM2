@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -72,6 +74,7 @@ public class EmployeeFragment extends Fragment {
     ArrayList<CustomListViewEmployee> listEmployee = new ArrayList<>();
     ListView listView_show;
     Button btnAdd;
+    SearchView searchView;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -79,8 +82,11 @@ public class EmployeeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("employ_id",id);
 
+        searchView = (SearchView) view.findViewById(R.id.searchEmployee);
         listView_show = (ListView) view.findViewById(R.id.lvEmployees);
         btnAdd = (Button) view.findViewById(R.id.btn_add);
+        CustomListViewEmployeeAdapter adapter = new CustomListViewEmployeeAdapter(getContext(), R.layout.list_employee, listEmployee);
+        listView_show.setAdapter(adapter);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,15 +94,41 @@ public class EmployeeFragment extends Fragment {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!listEmployee.isEmpty()) {
+                    ArrayList<CustomListViewEmployee> list = new ArrayList<>();
+                    for (CustomListViewEmployee item : listEmployee) {
+                        if (item.getName().contains(newText))
+                            list.add(item);
+                    }
+                    CustomListViewEmployeeAdapter adapter_temp = new CustomListViewEmployeeAdapter(getContext(), R.layout.list_employee, list);
+                    listView_show.setAdapter(adapter_temp);
+                }
+                return false;
+            }
+        });
+
+        listView_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Navigation.findNavController(view).navigate(R.id.action_employeeFragment_to_newEmployeeInfoFragment,bundle);
+            }
+        });
         CustomListViewEmployee custom1 = new CustomListViewEmployee("Nguyen Van A", "provip@gmail.com");
         CustomListViewEmployee custom2 = new CustomListViewEmployee("Nguyen Van B", "vipprosieucapp@gmail.com");
-        CustomListViewEmployee custom3 = new CustomListViewEmployee("Nguyen Van C", "promax@gmail.com");
+        //CustomListViewEmployee custom3 = new CustomListViewEmployee("Nguyen Van C", "promax@gmail.com");
         listEmployee.add(custom1);
         listEmployee.add(custom2);
-        listEmployee.add(custom3);
+        //listEmployee.add(custom3);
 
-        CustomListViewEmployeeAdapter adapter = new CustomListViewEmployeeAdapter(getContext(), R.layout.list_employee, listEmployee);
-        listView_show.setAdapter(adapter);
 
     }
+
 }
