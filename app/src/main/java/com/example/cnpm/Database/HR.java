@@ -4,6 +4,14 @@ public class HR {
     private String job_position;
     private String employee_type;
 
+    public HR(String job_position, String employee_type){
+        this.job_position = job_position;
+        this.employee_type = employee_type;
+    }
+
+    public HR() {
+    }
+
     public String getJob_position() {
         return job_position;
     }

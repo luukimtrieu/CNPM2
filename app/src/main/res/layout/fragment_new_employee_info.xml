@@ -53,12 +53,13 @@
                         android:id="@+id/txtInputEditText_Name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Employee's Name" />
+                        android:hint="Employee's Name"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txtInputLayout_EmployeeID"
+                    android:id="@+id/txtInputLayout_JobPosition"
                     android:layout_width="235dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
@@ -71,10 +72,11 @@
                     app:layout_constraintVertical_bias="0.877">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtInputEditText_EmployeeID"
+                        android:id="@+id/txtInputEditText_JobPosition"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Employee's ID" />
+                        android:hint="Job's Position"
+                        android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,31 +185,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_Payroll"
+                android:id="@+id/txtInputLayout_BasicSalary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEditText_Payroll"
+                    android:id="@+id/txtInputEditText_BasicSalary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Payroll"
+                    android:hint="Basic Salary"
                     android:inputType="numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_JobPosition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEditText_JobPosition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Job's Position"
-                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -221,7 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Employee's Type"
-                    android:inputType="numberDecimal" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

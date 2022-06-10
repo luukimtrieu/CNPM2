@@ -27,6 +27,23 @@ public class Employee {
         this.hr_id = id;
     }
 
+    public Employee(String name,String department, String work_mobile, String work_email, String manager, String coach, String photo_url, int payroll_id, int work_info_id, int private_info_id, int hr_id){
+        this.name = name;
+        this.department = department;
+        this.work_mobile = work_mobile;
+        this.work_email = work_email;
+        this.manager = manager;
+        this.coach = coach;
+        this.photo_url = photo_url;
+        this.payroll_id = payroll_id;
+        this.work_info_id = work_info_id;
+        this.private_info_id = private_info_id;
+        this.hr_id = hr_id;
+    }
+
+    public Employee(String name, String department, String work_mobile, String work_email, String manager, String coach, String photo_url, Integer o, int work_info_id, int private_info_id, int hr_id) {
+    }
+
     public String getName() {
         return name;
     }

@@ -1,21 +1,18 @@
 package com.example.cnpm;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,12 +75,16 @@ public class EmployeeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String id = "123456";
+        Bundle bundle = new Bundle();
+        bundle.putString("employ_id",id);
+
         listView_show = (ListView) view.findViewById(R.id.lvEmployees);
         btnAdd = (Button) view.findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_employeeFragment_to_newEmployeeInfoFragment);
+                Navigation.findNavController(view).navigate(R.id.action_employeeFragment_to_newEmployeeInfoFragment,bundle);
             }
         });
 

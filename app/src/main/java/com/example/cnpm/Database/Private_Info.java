@@ -10,6 +10,20 @@ public class Private_Info {
     private String birth;
     private String certificate_level;
 
+    public  Private_Info(String address, String email, String language, String bank_account, String study_field, String gender, String birth, String certificate_level){
+        this.address = address;
+        this.email = email;
+        this.language = language;
+        this.bank_account = bank_account;
+        this.study_field = study_field;
+        this.gender = gender;
+        this.birth = birth;
+        this.certificate_level = certificate_level;
+    }
+
+    public Private_Info() {
+    }
+
     public String getAddress() {
         return address;
     }

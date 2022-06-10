@@ -3,7 +3,16 @@ package com.example.cnpm.Database;
 public class Department {
     private String name;
     private int manager_id;
-    private int manager_name;
+    private String manager_name;
+
+    public Department(String name, int manager_id, String manager_name){
+        this.name = name;
+        this.manager_id = manager_id;
+        this.manager_name = manager_name;
+    }
+
+    public Department(String name, Integer o, String manager_name) {
+    }
 
     public String getName() {
         return name;
@@ -21,11 +30,11 @@ public class Department {
         this.manager_id = manager_id;
     }
 
-    public int getManager_name() {
+    public String getManager_name() {
         return manager_name;
     }
 
-    public void setManager_name(int manager_name) {
+    public void setManager_name(String manager_name) {
         this.manager_name = manager_name;
     }
 }

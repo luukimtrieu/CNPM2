@@ -8,10 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-
 public class AppDataBase extends SQLiteOpenHelper {
 
     public AppDataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -118,42 +114,6 @@ public class AppDataBase extends SQLiteOpenHelper {
 
     }
 
-    public List<User> getAllUser()
-    {
-        List<User> users = new ArrayList<>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM USER", null);
-
-        if(cursor.moveToFirst())
-        {
-            do {
-                String email = cursor.getString(0);
-                String password = cursor.getString(1);
-                String user_name = cursor.getString(2);
-                String company_name = cursor.getString(3);
-                int employee_id = cursor.getInt(4);
-
-                User user = new User(company_name, user_name, email, password, employee_id);
-                users.add(user);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return users;
-    }
-
-    public void addOne(User user)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("email", user.getEmail());
-        cv.put("password", user.getPassword());
-        cv.put("user_name", user.getUser_name());
-        cv.put("company_name", user.getCompany_name());
-
-        db.insert("USER", null, cv);
-    }
 
     public void addOne(Work_Info work_info)
     {
@@ -162,7 +122,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         cv.put("work_address", work_info.getWork_address());
         cv.put("work_hour", work_info.getWork_hour());
 
-        db.insert("department_new", null, cv);
+        db.insert("WORK_INFO", null, cv);
     }
 
     public void addOne(Time_off time_off)
@@ -205,7 +165,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         cv.put("certificate_level", private_info.getCertificate_level());
 
 
-        db.insert("department_new", null, cv);
+        db.insert("PRIVATE_INFO", null, cv);
     }
 
     public void addOne(Payroll payroll)
@@ -229,7 +189,7 @@ public class AppDataBase extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("name", department.getName());
+        cv.put("department_name", department.getName());
         cv.put("manager_id", department.getManager_id());
         cv.put("manager_name", department.getManager_name());
 
@@ -249,7 +209,7 @@ public class AppDataBase extends SQLiteOpenHelper {
     public void addOne(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("name", employee.getName());
+        cv.put("employee_name", employee.getName());
         cv.put("department", employee.getDepartment());
         cv.put("work_mobile", employee.getWork_mobile());
         cv.put("work_email", employee.getWork_email());
