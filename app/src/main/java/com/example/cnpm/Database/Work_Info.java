@@ -4,6 +4,14 @@ public class Work_Info {
     private String work_address;
     private int work_hour;
 
+    public Work_Info(String work_address, int work_hour){
+        this.work_address = work_address;
+        this.work_hour = work_hour;
+    }
+
+    public Work_Info() {
+    }
+
     public String getWork_address() {
         return work_address;
     }
