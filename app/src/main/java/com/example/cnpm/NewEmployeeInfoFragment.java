@@ -149,7 +149,8 @@ public class NewEmployeeInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataBase = new AppDataBase(getContext(), "database5.db", null, 1);
+        dataBase = new AppDataBase(getContext(), "database6.db", null, 1);
+
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnBack = (Button) view.findViewById(R.id.btnBack);
         imageView = view.findViewById(R.id.imageAvt);
@@ -286,11 +287,16 @@ public class NewEmployeeInfoFragment extends Fragment {
                 if (check) {
                     Employee employee = new Employee(textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
                             textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),"image/*",Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
+
                     HR hr = new HR(textInputEditText_JobPosition.getText().toString(), textInputEditText_EmployeeType.getText().toString());
+
                     Work_Info work_info = new Work_Info(textInputEditText_WorkAddress.getText().toString(), Integer.parseInt(textInputEditText_WorkHours.getText().toString()));
+
                     Private_Info private_info = new Private_Info(textInputEditText_PrAddress.getText().toString(), textInputEditText_PrEmail.getText().toString(), textInputEditText_PrLanguage.getText().toString(),
                             textInputEditText_PrBankAcc.getText().toString(),textInputEditText_PrStudyField.getText().toString(),textInputEditText_PrGender.getText().toString(),textInputEditText_PrBirth.getText().toString(),textInputEditText_PrCertificate.getText().toString());
+
                     Department department = new Department(textInputEditText_Department.getText().toString(),134, textInputEditText_Manager.getText().toString());
+
                     dataBase.addOne(employee);
                     dataBase.addOne(hr);
                     dataBase.addOne(work_info);

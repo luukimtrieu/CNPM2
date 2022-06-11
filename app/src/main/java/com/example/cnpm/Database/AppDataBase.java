@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppDataBase extends SQLiteOpenHelper {
 
     public AppDataBase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -114,6 +117,24 @@ public class AppDataBase extends SQLiteOpenHelper {
 
     }
 
+    public List<Employee> getAllEmployee()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM employee_new", null);
+        List<Employee> employees = new ArrayList<>();
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                Employee e = new Employee();
+                e.setName(cursor.getString(1));
+                e.setWork_email(cursor.getString(4));
+                employees.add(e);
+            } while(cursor.moveToNext());
+        }
+
+        return employees;
+    }
 
     public void addOne(Work_Info work_info)
     {

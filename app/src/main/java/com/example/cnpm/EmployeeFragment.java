@@ -5,14 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.cnpm.Database.AppDataBase;
+import com.example.cnpm.Database.Employee;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,6 +78,7 @@ public class EmployeeFragment extends Fragment {
     ArrayList<CustomListViewEmployee> listEmployee = new ArrayList<>();
     ListView listView_show;
     Button btnAdd;
+    SearchView searchView;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -79,6 +86,7 @@ public class EmployeeFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("employ_id",id);
 
+        searchView = view.findViewById(R.id.searchEmployee);
         listView_show = (ListView) view.findViewById(R.id.lvEmployees);
         btnAdd = (Button) view.findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -88,15 +96,32 @@ public class EmployeeFragment extends Fragment {
             }
         });
 
-        CustomListViewEmployee custom1 = new CustomListViewEmployee("Nguyen Van A", "provip@gmail.com");
-        CustomListViewEmployee custom2 = new CustomListViewEmployee("Nguyen Van B", "vipprosieucapp@gmail.com");
-        CustomListViewEmployee custom3 = new CustomListViewEmployee("Nguyen Van C", "promax@gmail.com");
-        listEmployee.add(custom1);
-        listEmployee.add(custom2);
-        listEmployee.add(custom3);
+        AppDataBase db = new AppDataBase(getContext(), "database6.db", null, 1);
+
+        List<Employee> employeeList = db.getAllEmployee();
+        List<String> data = new ArrayList<>();
+
+        for(Employee employee : employeeList)
+        {
+            CustomListViewEmployee custom1 = new CustomListViewEmployee(employee.getName(), employee.getWork_email());
+            listEmployee.add(custom1);
+        }
 
         CustomListViewEmployeeAdapter adapter = new CustomListViewEmployeeAdapter(getContext(), R.layout.list_employee, listEmployee);
         listView_show.setAdapter(adapter);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Filter f = adapter.getFilter();
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
     }
 }

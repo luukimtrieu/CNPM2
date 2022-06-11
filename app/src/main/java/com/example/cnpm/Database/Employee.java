@@ -13,18 +13,7 @@ public class Employee {
     private int private_info_id;
     private int hr_id;
 
-    public Employee(String _name, String _department, int _payroll, int id) {
-        this.name = _name;
-        this.department = _department;
-        this.work_mobile = "1900 1008";
-        this.work_email = "vubaochau@gmail.com";
-        this.manager = "Vu Bao Chau";
-        this.coach = "Hello";
-        this.photo_url = "";
-        this.payroll_id = _payroll;
-        this.work_info_id = id;
-        this.private_info_id = id;
-        this.hr_id = id;
+    public Employee() {
     }
 
     public Employee(String name,String department, String work_mobile, String work_email, String manager, String coach, String photo_url, int payroll_id, int work_info_id, int private_info_id, int hr_id){
@@ -41,8 +30,7 @@ public class Employee {
         this.hr_id = hr_id;
     }
 
-    public Employee(String name, String department, String work_mobile, String work_email, String manager, String coach, String photo_url, Integer o, int work_info_id, int private_info_id, int hr_id) {
-    }
+
 
     public String getName() {
         return name;
