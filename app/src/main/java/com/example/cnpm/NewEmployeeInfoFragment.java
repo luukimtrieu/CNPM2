@@ -117,8 +117,8 @@ public class NewEmployeeInfoFragment extends Fragment {
     }
     Button btnSave;
     Button btnBack;
-    Button btnpickFromGallery;
     Button btnDelete;
+    Button btnpickFromGallery;
     Image Avt;
     TextInputEditText textInputEditText_Name;
     TextInputEditText textInputEditText_PhoneNumber;
@@ -147,12 +147,12 @@ public class NewEmployeeInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataBase = new AppDataBase(getContext(), "database5.db", null, 1);
+        dataBase = new AppDataBase(getContext(), "database6.db", null, 1);
+        btnDelete = (Button) view.findViewById(R.id.btnDelete);
         btnSave = (Button) view.findViewById(R.id.btnSave);
         btnBack = (Button) view.findViewById(R.id.btnBack);
-        btnDelete = (Button) view.findViewById(R.id.btnDelete);
-        btnpickFromGallery = view.findViewById(R.id.btnsetPicture);
         imageView = view.findViewById(R.id.imageAvt);
+        btnpickFromGallery = view.findViewById(R.id.btnsetPicture);
         textInputEditText_Name = (TextInputEditText) view.findViewById(R.id.txtInputEditText_Name);
         textInputEditText_PhoneNumber = (TextInputEditText) view.findViewById(R.id.txtInputEditText_PhoneNumber);
         textInputEditText_WorkEmail = (TextInputEditText) view.findViewById(R.id.txtInputEditText_WorkEmail);
@@ -251,11 +251,11 @@ public class NewEmployeeInfoFragment extends Fragment {
                     check = true;
                 }
                 if (check) {
-                    Employee employee = new Employee(textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
+                    Employee employee = new Employee(-1,textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
                             textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),null,Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
                     HR hr = new HR(textInputEditText_JobPosition.getText().toString(), textInputEditText_EmployeeType.getText().toString());
-                    Work_Info work_info = new Work_Info(textInputEditText_WorkAddress.getText().toString(), Integer.parseInt(textInputEditText_WorkHours.getText().toString()));
-                    Private_Info private_info = new Private_Info(textInputEditText_PrAddress.getText().toString(), textInputEditText_PrEmail.getText().toString(), textInputEditText_PrLanguage.getText().toString(),
+                    Work_Info work_info = new Work_Info(-1,textInputEditText_WorkAddress.getText().toString(), Integer.parseInt(textInputEditText_WorkHours.getText().toString()));
+                    Private_Info private_info = new Private_Info(-1,textInputEditText_PrAddress.getText().toString(), textInputEditText_PrEmail.getText().toString(), textInputEditText_PrLanguage.getText().toString(),
                             textInputEditText_PrBankAcc.getText().toString(),textInputEditText_PrStudyField.getText().toString(),textInputEditText_PrGender.getText().toString(),textInputEditText_PrBirth.getText().toString(),textInputEditText_PrCertificate.getText().toString());
                     Department department = new Department(textInputEditText_Department.getText().toString(),134, textInputEditText_Manager.getText().toString());
                     dataBase.addOne(employee);
@@ -264,19 +264,21 @@ public class NewEmployeeInfoFragment extends Fragment {
                     dataBase.addOne(private_info);
                     dataBase.addOne(department);
                     Toast.makeText(getContext(), "Successful!", Toast.LENGTH_SHORT).show();
-                    //Navigation.findNavController(view).navigate(R.id.action_newEmployeeInfoFragment_to_employeeFragment);
+                    Navigation.findNavController(view).navigate(R.id.action_newEmployeeInfoFragment_to_employeeFragment);
                 }
             }
         });
 
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Employee employee = new Employee(textInputEditText_Name.getText().toString(),textInputEditText_Department.getText().toString(),textInputEditText_PhoneNumber.getText().toString(),textInputEditText_WorkEmail.getText().toString(),
-                        textInputEditText_Manager.getText().toString(),textInputEditText_Coach.getText().toString(),null,Integer.parseInt(textInputEditText_BasicSalary.getText().toString()),work_info_id,private_info_id,hr_id);
-                dataBase.deleteOne(employee);
+
+                //dataBase.deleteOne(employee);
                 Toast.makeText(getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_newEmployeeInfoFragment_to_employeeFragment);
             }
         });
     }
+
 }

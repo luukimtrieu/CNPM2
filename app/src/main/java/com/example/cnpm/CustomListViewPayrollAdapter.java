@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +23,14 @@ public class CustomListViewPayrollAdapter extends ArrayAdapter<CustomListViewPay
     private Context mContext;
     int mResource;
 
+
     public CustomListViewPayrollAdapter(@NonNull Context context, int resource, @NonNull List<CustomListViewPayroll> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
     }
+
+
 
     @Override
     public int getCount() {
