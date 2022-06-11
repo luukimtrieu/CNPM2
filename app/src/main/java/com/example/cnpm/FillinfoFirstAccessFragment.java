@@ -2,11 +2,16 @@ package com.example.cnpm;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,22 @@ public class FillinfoFirstAccessFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextInputEditText yourName;
+    private TextInputEditText companyName;
+    private TextInputEditText phoneNumber;
+    private TextInputEditText department;
+    private TextInputEditText yourPosition;
+    private TextInputEditText workingAddress;
+    private TextInputEditText workingHours;
+    private TextInputEditText address;
+    private TextInputEditText language;
+    private TextInputEditText bankAccount;
+    private TextInputEditText studyField;
+    private TextInputEditText nationality;
+    private TextInputEditText gender;
+    private TextInputEditText identity;
+    private TextInputEditText birthday;
+    private TextInputEditText certificate;
 
     public FillinfoFirstAccessFragment() {
         // Required empty public constructor
@@ -61,4 +82,33 @@ public class FillinfoFirstAccessFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fillinfo_first_access, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(view);
+
+    }
+
+    public void initView(View view)
+    {
+        yourName = view.findViewById(R.id.txtInputEditText_Name);
+        companyName = view.findViewById(R.id.txtInputEditText_CompanyName);
+        phoneNumber = view.findViewById(R.id.txtInputEditText_PhoneNumber);
+        department = view.findViewById(R.id.txtInputEditText_Department);
+        yourPosition = view.findViewById(R.id.txtInputEditText_JobPosition);
+        workingAddress = view.findViewById(R.id.txtInputEditText_WorkAddress);
+        workingHours = view.findViewById(R.id.txtInputEditText_WorkHours);
+        address = view.findViewById(R.id.txtInputEditText_Address);
+        language = view.findViewById(R.id.txtInputEditText_Language);
+        bankAccount = view.findViewById(R.id.txtInputEditText_BankAccount);
+        studyField = view.findViewById(R.id.txtInputEditText_StudyField);
+        nationality = view.findViewById(R.id.txtInputEditText_Nationality);
+        identity = view.findViewById(R.id.txtInputEditText_IdentityNumber);
+        gender = view.findViewById(R.id.txtInputEditText_Gender);
+        birthday = view.findViewById(R.id.txtInputEditText_Birth);
+        certificate = view.findViewById(R.id.txtInputEditText_Certificate);
+    }
+
+
 }

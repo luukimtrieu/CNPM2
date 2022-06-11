@@ -58,7 +58,7 @@
                     app:layout_constraintVertical_bias="0.877">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEditText_EmployeeID"
+                    android:id="@+id/txtInputEditText_CompanyName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Company Name" />
@@ -80,6 +80,7 @@
                     android:layout_width="140dp"
                     android:layout_height="120dp"
                     android:alpha="0"
+                    android:contentDescription=""
                     app:layout_constraintBottom_toBottomOf="@+id/imageAvt"
                     app:layout_constraintEnd_toEndOf="@+id/imageAvt"
                     app:layout_constraintHorizontal_bias="0.528"
@@ -266,26 +267,55 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEditText_IdNumber"
+                    android:id="@+id/txtInputEditText_IdentityNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Identity"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_Gender"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:padding="10dp"
+                android:gravity="center">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEditText_Gender"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:paddingLeft="5dp"
+                    android:text="Gender"/>
+
+                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Gender (Male/Female)"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:paddingLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Male"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Female"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Other"/>
+                </RadioGroup>
+            </LinearLayout>
+
+
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtInputLayout_Birth"
@@ -298,7 +328,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Birthday"
-                    android:inputType="text" />
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

@@ -1,6 +1,7 @@
 package com.example.cnpm.Database;
 
 public class Private_Info {
+    int private_info_id;
     private String address;
     private String email;
     private String language;
@@ -10,7 +11,8 @@ public class Private_Info {
     private String birth;
     private String certificate_level;
 
-    public  Private_Info(String address, String email, String language, String bank_account, String study_field, String gender, String birth, String certificate_level){
+    public  Private_Info(int private_info_id,String address, String email, String language, String bank_account, String study_field, String gender, String birth, String certificate_level){
+        this.private_info_id = private_info_id;
         this.address = address;
         this.email = email;
         this.language = language;
@@ -22,6 +24,14 @@ public class Private_Info {
     }
 
     public Private_Info() {
+    }
+
+    public int getPrivate_info_id() {
+        return private_info_id;
+    }
+
+    public void setPrivate_info_id(int private_info_id) {
+        this.private_info_id = private_info_id;
     }
 
     public String getAddress() {
